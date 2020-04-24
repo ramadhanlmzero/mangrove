@@ -23,7 +23,7 @@
         </div>
         <div style="width: 100%; height: 100%;">
             {!! Mapper::render() !!}
-            <div id="legend"><h6 class="font-weight-bold">Legend</h6></div>
+            <div id="legend"><h6 class="font-weight-bold">Legenda</h6></div>
         </div>
         <div class="fixed-action-btn">
             <a id="showmodal" data-toggle="modal" data-target="#graphic" class="btn-floating btn-lg bg-success">
@@ -296,32 +296,32 @@
 @section('js')
     <script src="{{ asset('assets/js/chart.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/utils.js') }}"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/googlemaps/js-map-label/gh-pages/src/maplabel.js"></script>
-    <script src="{{asset('geojson/kec_gresik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/sampel.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2016mangrove_sangat_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2016mangrove_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2016mangrove_normal.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2016mangrove_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2016mangrove_sangat_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2017mangrove_sangat_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2017mangrove_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2017mangrove_normal.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2017mangrove_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2017mangrove_sangat_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2018mangrove_sangat_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2018mangrove_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2018mangrove_normal.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2018mangrove_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2018mangrove_sangat_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2019mangrove_sangat_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2019mangrove_baik.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2019mangrove_normal.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2019mangrove_buruk.geojson')}}" type="text/javascript"></script>
-    <script src="{{asset('geojson/2019mangrove_sangat_buruk.geojson')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/maplabel.js') }}"></script>
+    <script src="{{asset('geojson/kec_gresik.js')}}"></script>
+    <script src="{{asset('geojson/sampel.js')}}"></script>
+    <script src="{{asset('geojson/2016mangrove_sangat_baik.js')}}"></script>
+    <script src="{{asset('geojson/2016mangrove_baik.js')}}"></script>
+    <script src="{{asset('geojson/2016mangrove_normal.js')}}"></script>
+    <script src="{{asset('geojson/2016mangrove_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2016mangrove_sangat_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2017mangrove_sangat_baik.js')}}"></script>
+    <script src="{{asset('geojson/2017mangrove_baik.js')}}"></script>
+    <script src="{{asset('geojson/2017mangrove_normal.js')}}"></script>
+    <script src="{{asset('geojson/2017mangrove_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2017mangrove_sangat_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2018mangrove_sangat_baik.js')}}"></script>
+    <script src="{{asset('geojson/2018mangrove_baik.js')}}"></script>
+    <script src="{{asset('geojson/2018mangrove_normal.js')}}"></script>
+    <script src="{{asset('geojson/2018mangrove_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2018mangrove_sangat_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2019mangrove_sangat_baik.js')}}"></script>
+    <script src="{{asset('geojson/2019mangrove_baik.js')}}"></script>
+    <script src="{{asset('geojson/2019mangrove_normal.js')}}"></script>
+    <script src="{{asset('geojson/2019mangrove_buruk.js')}}"></script>
+    <script src="{{asset('geojson/2019mangrove_sangat_buruk.js')}}"></script>
     <script>
         var layer;
-        var sampels = {!! json_encode($sampels->toArray(), JSON_HEX_TAG) !!};
+        // var sampels = {!! json_encode($sampels->toArray(), JSON_HEX_TAG) !!};
         var infowindow = new google.maps.InfoWindow();
         function initMap() {
             layer = maps[0].map.data;
@@ -415,16 +415,69 @@
             layer.addListener('click', function(event) {
                 var feature = event.feature;
                 feature.toGeoJson(function(geojson){
-                    var name = geojson.properties.Name;
-                    sampels.forEach(element => {
-                        if(name == element.nama) {
-                            var html = '<b>Rincian Sampel Paramater<br>Kecamatan ' + element.kecamatan.kecamatan + ' Kabupaten Gresik<br><br>pH Air: '+ element.ph_air + '<br>' + 'Salinitas Air: '+ element.salinitas + '<br>Kadar Air Tanah: '+ element.kadar_air + '<br>' + 'Nitrogen Tanah: '+ element.nitrogen + '<br>' + 'Pasir: '+ element.pasir + '<br>' + 'Lanau: '+ element.lanau + '<br>' + 'Lempung: '+ element.lempung + '<br></b>';
-                            infowindow.setContent(html);
-                            infowindow.setPosition(event.latLng);
-                            infowindow.open(maps[0].map);
-                        }
-                    });
+                    if(isFinite(String(geojson.properties.Name))) {
+                        var html = '<b>Rincian Sampel Paramater<br>Kecamatan ' + geojson.properties.Kecamatan + ' Kabupaten Gresik<br><br>pH Air: '+ geojson.properties.pH_air + '<br>' + 'Salinitas Air: '+ geojson.properties.Salinitas + '<br>Kadar Air Tanah: '+ geojson.properties.Kadar_air + '<br>' + 'Nitrogen Tanah: '+ geojson.properties.Nitrogen + '<br>' + 'Pasir: '+ geojson.properties.Pasir + '<br>' + 'Lanau: '+ geojson.properties.Lanau + '<br>' + 'Lempung: '+ geojson.properties.Lempung + '<br></b>';
+                        infowindow.setContent(html);
+                        infowindow.setPosition(event.latLng);
+                        infowindow.open(maps[0].map);
+                    }
                 });
+            });
+            var sampel1 = new MapLabel({
+                text: 'Sampel 1',
+                position: new google.maps.LatLng(-7.187995, 112.663112),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel2 = new MapLabel({
+                text: 'Sampel 2',
+                position: new google.maps.LatLng(-7.145877, 112.654668),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel3 = new MapLabel({
+                text: 'Sampel 3',
+                position: new google.maps.LatLng(-7.09171, 112.585734),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel4 = new MapLabel({
+                text: 'Sampel 4',
+                position: new google.maps.LatLng(-6.906146, 112.527114),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel5 = new MapLabel({
+                text: 'Sampel 5',
+                position: new google.maps.LatLng(-6.902354, 112.554783),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel6 = new MapLabel({
+                text: 'Sampel 6',
+                position: new google.maps.LatLng(-6.906203710337642, 112.528196051716805),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
+            });
+            var sampel7 = new MapLabel({
+                text: 'Sampel 7',
+                position: new google.maps.LatLng(-6.903009, 112.554212),
+                map: maps[0].map,
+                fontSize: 13,
+                align: 'center',
+                zIndex: 15
             });
             var kec1 = new MapLabel({
                 text: 'Ujung Pangkah',
@@ -643,14 +696,14 @@
                         backgroundColor: '#ff0000',
                         borderColor: '#ff0000',
                         borderWidth: 1,
-                        data: [1.120552, 0.100638, 0.997043, 0.210597]
+                        data: [15, 14, 13, 12]
                     },
                     {
                         label: 'Buruk',
                         backgroundColor: '#ffa500',
                         borderColor: '#ffa500',
                         borderWidth: 1,
-                        data: [15.471279, 3.668909, 17.630619, 8.209759]
+                        data: [29, 27, 30, 28]
                     },
                     {
                         label: 'Normal',
@@ -677,6 +730,39 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var label = tooltipItem.xLabel;
+                                var value = tooltipItem.yLabel;
+                                if (value === 15) {
+                                    value = 1.120552;
+                                }
+                                if (value === 14) {
+                                    value = 0.100638;
+                                }
+                                if (value === 13) {
+                                    value = 0.997043;
+                                }
+                                if (value === 12) {
+                                    value = 0.210597;
+                                }
+                                if (value === 30) {
+                                    value = 17.630619;
+                                }
+                                if (value === 29) {
+                                    value = 15.471279;
+                                }
+                                if (value === 28) {
+                                    value = 8.209759;
+                                }
+                                if (value === 27) {
+                                    value = 3.668909;
+                                }
+                                return label + ': ' + value;
+                            }
+                        }
+                    },
                     legend: {
                         position: 'top',
                     },

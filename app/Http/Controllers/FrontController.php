@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Sampel;
-use App\Model\Mangrove;
 use Mapper;
-use PHPUnit\Framework\Constraint\SameSize;
 
 class FrontController extends Controller
 {
@@ -18,7 +16,7 @@ class FrontController extends Controller
     public function map()
     {
         $sampels = Sampel::with('kecamatan')->get();
-        Mapper::location('Gresik')->map(
+        Mapper::location('Gresik, Jawa Timur')->map(
             [
                 'zoom' => 11,
                 'center' => true,

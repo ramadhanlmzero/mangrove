@@ -628,12 +628,12 @@
                         layer.remove(feature);
                     });
                 }
+                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(first_mangrove_sangat_baik);
                 layer.addGeoJson(first_mangrove_baik);
                 layer.addGeoJson(first_mangrove_normal);
                 layer.addGeoJson(first_mangrove_buruk);
                 layer.addGeoJson(first_mangrove_sangat_buruk);
-                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(sampel);
             }
             else if (year == 2018) {
@@ -642,12 +642,12 @@
                         layer.remove(feature);
                     });
                 }
+                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(second_mangrove_sangat_baik);
                 layer.addGeoJson(second_mangrove_baik);
                 layer.addGeoJson(second_mangrove_normal);
                 layer.addGeoJson(second_mangrove_buruk);
                 layer.addGeoJson(second_mangrove_sangat_buruk);
-                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(sampel);
             }
             else if (year == 2017) {
@@ -656,12 +656,12 @@
                         layer.remove(feature);
                     });
                 }
+                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(third_mangrove_sangat_baik);
                 layer.addGeoJson(third_mangrove_baik);
                 layer.addGeoJson(third_mangrove_normal);
                 layer.addGeoJson(third_mangrove_buruk);
                 layer.addGeoJson(third_mangrove_sangat_buruk);
-                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(sampel);
             }
             else if (year == 2016) {
@@ -670,12 +670,12 @@
                         layer.remove(feature);
                     });
                 }
+                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(fourth_mangrove_sangat_baik);
                 layer.addGeoJson(fourth_mangrove_baik);
                 layer.addGeoJson(fourth_mangrove_normal);
                 layer.addGeoJson(fourth_mangrove_buruk);
                 layer.addGeoJson(fourth_mangrove_sangat_buruk);
-                layer.addGeoJson(kec_gresik);
                 layer.addGeoJson(sampel);
             }
             google.maps.event.addDomListener(window, 'load', initMap);

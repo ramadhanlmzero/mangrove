@@ -325,12 +325,12 @@
         var infowindow = new google.maps.InfoWindow();
         function initMap() {
             layer = maps[0].map.data;
+            layer.addGeoJson(kec_gresik);
             layer.addGeoJson(first_mangrove_sangat_baik);
             layer.addGeoJson(first_mangrove_baik);
             layer.addGeoJson(first_mangrove_normal);
             layer.addGeoJson(first_mangrove_buruk);
             layer.addGeoJson(first_mangrove_sangat_buruk);
-            layer.addGeoJson(kec_gresik);
             layer.addGeoJson(sampel);
             layer.setStyle(function(feature) {
                 color = "gray";
